@@ -37,6 +37,7 @@ export default function NavDrawer() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const [labelItems] = useLabelsStore();
+  console.log(labelItems)
   const [{ selectedLabelId, isNavBarOpen }, { toggleNavBar, setSelectedLabelId }] = useUiStore();
 
   const onDrawerItemSelected = (labelId) => {
@@ -70,7 +71,7 @@ export default function NavDrawer() {
         </Typography>
       </div>
       <List>
-        {labelItems.map(labelItem => (
+        {labelItems && labelItems.map(labelItem => (
           <DrawerItem
             key={labelItem.id}
             text={labelItem.name}

@@ -78,7 +78,7 @@ export default function () {
   const [{ isListView }] = useUserStore();
   const [{ isNavBarOpen, noteInEditMode, selectedLabelId }] = useUiStore();
   const [notesItems] = useTodosStore();
-  const filteredItems = notesItems.filter(item => {
+  const filteredItems = notesItems?.filter(item => {
     if (selectedLabelId !== "") {
       return item.labels.some((labelItem) => labelItem.id === selectedLabelId);
     } else {
@@ -110,7 +110,7 @@ export default function () {
             width: width
           }}
         >
-          {filteredItems.map((noteItem) => {
+          {filteredItems?.map((noteItem) => {
             return (
               <div
                 key={noteItem.id}

@@ -25,9 +25,9 @@ export default function ({ navigate }) {
     // } else if (result.data) {
     //     return (<MainComponent todos={result.data.todos} labels={result.data.labels} user={result.data.user} />)
     // }
-    const todos = null;
-    const labels = null;
-    const user = null;
+    const todos = [];
+    const labels = [];
+    const user = {};
     return (
         <>
             <TodosProvider todos={todos}>
@@ -80,12 +80,12 @@ function ThemeControlledComponent() {
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <AppBar />
-            {/*<NavDrawer />*/}
-            {/*<Container maxWidth={false}>*/}
-            {/*    <Box mt={8}>*/}
-            {/*        <NotesArea />*/}
-            {/*    </Box>*/}
-            {/*</Container>*/}
+            <NavDrawer />
+            <Container maxWidth={false}>
+                <Box mt={8}>
+                    <NotesArea />
+                </Box>
+            </Container>
         </ThemeProvider>
     );
 }

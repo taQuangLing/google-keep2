@@ -86,10 +86,10 @@ export default function LabelPopover({ anchorEl, labels, setLabels, isOpen, onCl
   const popoverId = isOpen ? "color-popover" : undefined;
   const [newLabelName, setNewLabelName] = useState("");
   const [allLabelItems, dispatchLabel] = useLabelsStore();
-  const filteredLabelItems = allLabelItems.filter(labelItem =>
+  const filteredLabelItems = allLabelItems?.filter(labelItem =>
     newLabelName === "" || labelItem.name.includes(newLabelName)
   );
-  const [, createLabelExecute] = useMutation(createLabel);
+  const [, createLabelExecute] = useMutation(createLabel ?? []);
   const updateLabelsForNote = (labelItem) => {
     const updatedLabelIndex = labels.findIndex(selectedLabel => selectedLabel.id === labelItem.id);
     if (updatedLabelIndex > -1) {
@@ -141,7 +141,7 @@ export default function LabelPopover({ anchorEl, labels, setLabels, isOpen, onCl
             </div>
           </div>
           <List dense={true} component="div" style={{ width: "100%" }}>
-            {filteredLabelItems.map(labelItem => {
+            {filteredLabelItems?.map(labelItem => {
               const labelAriaId = `checkbox-list-label-${labelItem.id}`;
 
               return (

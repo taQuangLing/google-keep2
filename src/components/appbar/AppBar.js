@@ -166,11 +166,11 @@ export default function () {
             </IconButton>
           </div>
         </Toolbar>
-        {/*<ProfilePopover*/}
-        {/*  anchorEl={profileMenuRef.current}*/}
-        {/*  isOpen={isProfilePopoverOpen}*/}
-        {/*  onClose={() => setProfilePopoverOpen(false)}*/}
-        {/*/>*/}
+        <ProfilePopover
+          anchorEl={profileMenuRef.current}
+          isOpen={isProfilePopoverOpen}
+          onClose={() => setProfilePopoverOpen(false)}
+        />
       </AppBar>
     </div>
   );
@@ -180,7 +180,7 @@ function LogoContainer() {
   const classes = useStyles();
   return (
     <div className={classes.logoContainer}>
-      <img className={classes.logo} src={'../../logo.png'} alt={"logo"} />
+      <img className={classes.logo} src={window.location.origin + '/logo.png'} alt={"logo"} />
       <Typography
         color="textSecondary"
         className={classes.title}

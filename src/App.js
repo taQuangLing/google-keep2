@@ -1,9 +1,11 @@
 import Main from "./components/Main"
-
+import { Router } from "@reach/router";
 function App() {
   return (
     <>
-      <Main/>
+        <Router>
+            <Main path="/" />
+        </Router>
     </>
   );
 }

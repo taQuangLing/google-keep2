@@ -7,6 +7,8 @@ const UiContext = createContext(null);
 
 const reducer = (state = [], action = {}) => {
     const mutatedItem = action.payload;
+    console.log(state)
+    console.log(action)
     if (!mutatedItem) { return }
     const mutatedIndex = state.findIndex((item) => item.id === mutatedItem.id);
     switch (action.type) {

@@ -53,7 +53,7 @@ mutation CreateTodo ($title: String!, $notes: [String!]!, $labels: [ID]!, $color
         }
         color
         isCheckboxMode
-    } 
+    }
 }
 `
 

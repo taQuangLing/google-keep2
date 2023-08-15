@@ -80,6 +80,7 @@ export default function ({ notes, setNotes, isEditMode }) {
     setNotes(updatedNoteItems);
   };
   const onKeyPressed = (index, event) => {
+    console.log( "bac")
     if (event.keyCode === 13) { // Enter pressed, create a new row item
       event.preventDefault();
       var updatedNoteItems = Object.assign([], notes);

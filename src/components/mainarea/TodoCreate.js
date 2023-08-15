@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Paper, InputBase, Collapse, Button } from "@material-ui/core";
 import TodoActions from "../todo/Actions";
@@ -53,9 +53,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function () {
+  const [ todo, setTodo ] = useState({});
+  const [ todos, setTodos ] = useState([]);
   const classes = useStyles();
   const theme = useTheme();
-  const [, createTodoExecute] = useMutation(createTodo);
+  const [, createTodoExecute] = useMutation(createTodo ?? []);
   const [isFocussed, setFocussed] = useState(false);
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState([]);
@@ -63,13 +65,36 @@ export default function () {
   const [isCheckboxMode, setCheckboxMode] = useState(false);
   const [labels, setLabels] = useState([]);
   const [, dispatchTodo] = useTodosStore();
+  useEffect(() => {
+    setTodos(prevState => [
+      ...prevState,
+      todo
+    ])
+    console.log(todo)
+  }, todo)
   const onCloseClick = () => {
     const noteTexts = notes.map(noteItem => noteItem.text);
+    console.log(noteTexts)
     const labelIds = labels.map(labelItem => labelItem.id);
     if (title || noteTexts.length > 0) {
-      createTodoExecute({ title, notes: noteTexts, labels: labelIds, color, isCheckboxMode }).then(({ data }) => {
-        dispatchTodo({ type: "CREATED", payload: data.createTodo });
-      });
+      setTodo(prevState => prevState = { 'title': title,
+                      'notes': noteTexts,
+                      'labels': labelIds,
+                      'color': color,
+                      'isCheckboxMode': isCheckboxMode});
+
+      dispatchTodo({ type: "CREATED", payload: { 'title': title,
+          'notes': noteTexts,
+          'labels': labelIds,
+          'color': color,
+          'isCheckboxMode': isCheckboxMode} });
+
+      // createTodoExecute({ title, notes: noteTexts, labels: labelIds, color, isCheckboxMode }).then(({ data }) => {
+      //   console.log(data)
+      //
+      // }).catch(error => {
+      //   console.log(error)
+      // }) ;
     }
     setTitle("");
     setNotes([]);

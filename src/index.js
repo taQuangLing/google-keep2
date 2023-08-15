@@ -21,8 +21,6 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { Provider as UrqlProvider, createClient, defaultExchanges, subscriptionExchange } from 'urql';
 
-
 ReactDOM.render(
-
         <App />,
     document.getElementById("root"));
